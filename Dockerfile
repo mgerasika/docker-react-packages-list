@@ -14,9 +14,9 @@ WORKDIR /app/
 #    && ssh-keyscan bitbucket.org >> ~/.ssh/known_hosts
 
 RUN npm install
-RUN npm run build-react-prod
+RUN npm run build
 
 FROM nginx:latest
 COPY docker/nginx.conf /etc/nginx/conf.d/default.conf
 CMD sed -i -e 's/$PORT/'"$PORT"'/g' /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'
-COPY --from=builder /build /var/www/dist
+COPY --from=builder /app/build /var/www/dist

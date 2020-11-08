@@ -1,4 +1,7 @@
-docker build -t docker-stg3 .
-docker stop nestjs-docker3
-docker rm nestjs-docker3
-docker run --env PORT=5003 -d -p 3003:5003 --name nestjs-docker3 docker-stg3
+image=docker-stg333
+container=nestjs-docker333
+
+docker build -t $image .
+#docker stop $container
+#docker rm $container
+docker run --env PORT=5003 -d -p 3003:5003 --name $container $image
