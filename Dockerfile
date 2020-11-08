@@ -1,5 +1,6 @@
 FROM node:11.15.0 as builder
 
+ARG CLIEND_ID
 COPY . /app/
 WORKDIR /app/
 
