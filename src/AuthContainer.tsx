@@ -3,7 +3,7 @@ import {GithubLoginButton} from "react-social-login-buttons";
 import {apolloClientGithub, apolloClientHeroku} from "./options/createBookMutationOptions";
 import {useGithubAuthMutation} from "./generated/graphql-hooks-server3";
 import {useViewerLoginQuery} from "./generated/graphql-hooks-server2";
-import queryString from 'query-string';
+const queryString = require('query-string');
 
 interface Props {
     children: any
