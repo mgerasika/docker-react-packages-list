@@ -1,0 +1,5 @@
+mutation GithubAuth ($input: CreateGitHubAuthInput){
+    githubAuth(input:$input) {
+        access_token
+    }
+}

@@ -1,8 +1,30 @@
 overwrite: true
-schema: "http://localhost:5000"
-documents: "src/graphql/*.graphql"
 generates:
-  src/generated/graphql-hooks.ts:
+#  src/generated/graphql-hooks-server1.ts:
+#    documents: "src/graphql/server1/*.graphql"
+#    schema: "http://localhost:5000"
+#    plugins:
+#      - "typescript"
+#      - "typescript-operations"
+#      - "typescript-react-apollo"
+#    config:
+#      withHOC: false
+#      withComponent: false
+#      withHooks: true
+  src/generated/graphql-hooks-server2.ts:
+    documents: "src/graphql/server2/*.graphql"
+    schema: ignored/schema.graphql
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-apollo"
+    config:
+      withHOC: false
+      withComponent: false
+      withHooks: true
+  src/generated/graphql-hooks-server3.ts:
+    documents: "src/graphql/server3/*.graphql"
+    schema: https://docker-nestjs.herokuapp.com/graphql
     plugins:
       - "typescript"
       - "typescript-operations"

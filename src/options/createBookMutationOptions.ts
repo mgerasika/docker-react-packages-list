@@ -1,37 +1,31 @@
-import {
-  CreateBookMutation,
-  CreateBookMutationVariables,
-  BooksDocument,
-  BooksQuery
-} from "../generated/graphql-hooks";
-import { MutationFunctionOptions } from "@apollo/react-common";
+import { ApolloClient, createHttpLink, InMemoryCache, useQuery } from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
+const queryString = require('query-string');
 
-export const createBookMutationOptions = (
-  variables: CreateBookMutationVariables
-): MutationFunctionOptions<CreateBookMutation> => {
+export const apolloClientLocalhost = new ApolloClient({ uri: "http://localhost:5000",cache:new InMemoryCache() });
+
+export const apolloClientHeroku = new ApolloClient({ uri: "https://docker-nestjs.herokuapp.com/graphql",cache:new InMemoryCache() });
+export const apolloClientHeroku2 = new ApolloClient({ uri: "http://localhost:5003/graphql",cache:new InMemoryCache() });
+
+const httpLink = createHttpLink({
+  uri: 'https://api.github.com/graphql',
+});
+
+const authLink = setContext((_, { headers }) => {
+  // get the authentication token from local storage if it exists
+  const query = queryString.parse(document.location.search);
+  const token = localStorage.getItem('token') || query.code;
+  // return the headers to the context so httpLink can read them
   return {
-    variables,
-    optimisticResponse: {
-      __typename: "Mutation",
-      createBook: {
-        __typename: "Book",
-        title: variables.title,
-        author: variables.author
-      }
-    },
-    update: store => {
-      try {
-        debugger;
-        const data = store.readQuery<BooksQuery>({ query: BooksDocument });
-        if (data) {
-          store.writeQuery<BooksQuery>({
-            query: BooksDocument,
-            data: {
-              books: [...data.books, { __typename: "Book", ...variables }]
-            }
-          });
-        }
-      } catch {}
+    headers: {
+      ...headers,
+      Authorization: token ? `Bearer ${token}` : "",
     }
-  };
-};
+  }
+});
+
+
+export const apolloClientGithub = new ApolloClient({
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache()
+});

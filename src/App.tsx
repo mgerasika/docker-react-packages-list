@@ -1,10 +1,24 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import {Books} from "./Books";
+import {Books2} from "./Books2";
+import {GitHub} from "./GitHub";
+import {AuthContainer} from "./AuthContainer";
 
 function App() {
   return (
     <div className="App">
+        <AuthContainer>
+            <GitHub />
+        </AuthContainer>
+
+       <hr/>
+      <
+          Books />
+      <hr/>
+      <Books2 />
+        <hr/>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>

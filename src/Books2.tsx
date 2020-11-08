@@ -1,35 +1,34 @@
 import React from "react";
-import {useBooksQuery, useCreateBookMutation} from "./generated/graphql-hooks";
-//import {createBookMutationOptions} from "./options/createBookMutationOptions";
+import { useQuery, gql } from '@apollo/client';
+
+const EXCHANGE_RATES = gql`
+    query Books {
+        book {
+            title
+            author
+            index
+        }
+    }
+`;
 
 interface Props {}
 
-export const Books: React.FC<Props> = () => {
-    const { data } = useBooksQuery();
-    const [createBook] = useCreateBookMutation();
+export const Books2: React.FC<Props> = () => {
+    const { loading, error, data } = useQuery(EXCHANGE_RATES);
 
-    return (
-        <div>
-            <button
-                onClick={() => {
-                    // createBook(
-                    //     createBookMutationOptions({
-                    //         author: "" + Math.random(),
-                    //         title: "random book"
-                    //     })
-                    // );
-                }}
-            >
-                add book
-            </button>
-            {(data && data.books ? data.books : []).map(b => {
-                return (
-                    <div key={b!.title! + b!.author}>
-                        {b!.title} {b!.author}
-                    </div>
-                );
-            })}
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error :<pre> {JSON.stringify(error,null,2)}</pre></p>;
+
+    const res = data.books.map(({ title}:{title:string}) => (
+        <div key={title}>
+            <p>
+                {title}
+            </p>
         </div>
-    );
+    ));
+    return <div>
+        <h3>Books 2</h3>
+        {res}
+    </div>
 };
 
