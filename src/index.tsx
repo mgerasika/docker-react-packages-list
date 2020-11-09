@@ -4,11 +4,11 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ApolloProvider } from '@apollo/client';
-import {apolloClientLocalhost} from "./options/createBookMutationOptions";
+import { getApolloClient } from './utils/apollo-client';
 
 ReactDOM.render(
   <React.StrictMode>
-      <ApolloProvider client={apolloClientLocalhost}>
+      <ApolloProvider client={getApolloClient('github')}>
           <App />
       </ApolloProvider>
   </React.StrictMode>,
