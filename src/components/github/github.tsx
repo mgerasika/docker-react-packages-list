@@ -13,10 +13,10 @@ interface Props {}
 
 type State = {
     paging: {
-    first?:number,
-    last?:number,
-    after?:string | null
-    before?:string | null
+        first?:number,
+        last?:number,
+        after?:string | null
+        before?:string | null
     }
 }
 
@@ -25,6 +25,8 @@ type TDataItem = {
     id:string;
     name: string;
     stargazerCount:number;
+    descriptionHTML:string;
+    homepageUrl:string;
     forkCount:number;
 }
 
@@ -39,6 +41,7 @@ export const GitHub: React.FC<Props> = () => {
             {
                 name: "name",
                 title : "Name",
+                renderCell: (_header,data) => <a href={data.homepageUrl} target='blank'>[{data.name}]</a>
             },
             {
                 name: "stargazerCount",
@@ -49,17 +52,24 @@ export const GitHub: React.FC<Props> = () => {
                 name: "forkCount",
                 title : "Forks",
                 renderCell: (_header,data) => <Tag className={classes.forks}>{data.forkCount}</Tag>
+            },
+            {
+                name: "descriptionHTML",
+                title : "Description",
+                renderCell: (_header,data) => <div className={classes.description} dangerouslySetInnerHTML={{__html: data.descriptionHTML}}></div>
             }
         ] as TTableHeader<TDataItem>[];
     },[classes]);
 
     const dataSource = useMemo(()=>{
-        return data?.search?.edges?.map((item)=>{
+        return data?.search?.edges?.map((item:any)=>{
             const node:Repository = item?.node as unknown as Repository;
             return {
                 cursor:item?.cursor,
                 id:node.id,
                 name: node.name,
+                descriptionHTML:node.descriptionHTML,
+                homepageUrl:node.homepageUrl,
                 stargazerCount:node.stargazerCount,
                 forkCount:node.forkCount
             } as TDataItem

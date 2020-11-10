@@ -18798,7 +18798,7 @@ export type SearchReactReposQuery = (
 
 export type MyRepositoryFragment = (
   { __typename?: 'Repository' }
-  & Pick<Repository, 'id' | 'name' | 'stargazerCount' | 'forkCount' | 'descriptionHTML' | 'updatedAt'>
+  & Pick<Repository, 'id' | 'name' | 'stargazerCount' | 'forkCount' | 'descriptionHTML' | 'homepageUrl' | 'updatedAt'>
   & { stargazers: (
     { __typename?: 'StargazerConnection' }
     & Pick<StargazerConnection, 'totalCount'>
@@ -18826,6 +18826,7 @@ export const MyRepositoryFragmentDoc = gql`
   stargazerCount
   forkCount
   descriptionHTML
+  homepageUrl
   stargazers {
     totalCount
   }

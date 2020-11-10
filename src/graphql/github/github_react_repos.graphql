@@ -1,8 +1,3 @@
-# Type queries into this side of the screen, and you will
-# see intelligent typeaheads aware of the current GraphQL type schema,
-# live syntax, and validation errors highlighted within the text.
-
-# We'll get you started with a simple query showing your username!
 query SearchReactRepos($first: Int,$last: Int, $after: String, $before: String ) {
     search(query: "react sort:stars-desc", type: REPOSITORY, first:$first, last: $last, after: $after, before: $before) {
         repositoryCount
@@ -26,6 +21,7 @@ fragment MyRepository on Repository {
     stargazerCount
     forkCount
     descriptionHTML
+    homepageUrl
     stargazers {
         totalCount
     }
