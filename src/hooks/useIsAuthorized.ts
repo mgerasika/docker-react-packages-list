@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { useViewerLoginQuery } from "../generated/graphql-hooks-server2";
-import { getApolloClient } from "../utils/apollo-client";
+import { useViewerLoginQuery } from "../generated/graphql-hooks-github";
+import { getApolloClient } from "../common/apollo-client";
 
 type TResult = {
     loaded:boolean;

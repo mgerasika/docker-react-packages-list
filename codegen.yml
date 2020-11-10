@@ -1,6 +1,6 @@
 overwrite: true
 generates:
-  src/generated/graphql-hooks-server2.ts:
+  src/generated/graphql-hooks-github.ts:
     documents: "src/graphql/server2/*.graphql"
     schema: ignored/schema.graphql
     plugins:
@@ -11,7 +11,7 @@ generates:
       withHOC: false
       withComponent: false
       withHooks: true
-  src/generated/graphql-hooks-server3.ts:
+  src/generated/graphql-hooks-heroku.ts:
     documents: "src/graphql/server3/*.graphql"
     schema: https://docker-nestjs.herokuapp.com/graphql
     plugins:

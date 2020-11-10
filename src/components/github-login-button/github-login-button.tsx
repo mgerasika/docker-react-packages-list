@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
 import {GithubLoginButton as LoginButton} from "react-social-login-buttons";
-import {useGithubAuthMutation} from "../generated/graphql-hooks-server3";
-import { getApolloClient } from "../utils/apollo-client";
-import { CONSTANTS } from "../utils/constants";
+import {useGithubAuthMutation} from "../../generated/graphql-hooks-heroku";
+import { getApolloClient } from "../../common/apollo-client";
+import { CONSTANTS } from "../../common/constants";
 const queryString = require('query-string');
 
 type Props = {

@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect, useState} from "react";
-import { useIsAuthorized } from "../hooks/useIsAuthorized";
-import { GithubLoginButton } from "./github-login-button";
+import { useIsAuthorized } from "../../hooks/useIsAuthorized";
+import { GithubLoginButton } from "../github-login-button/github-login-button";
 
 interface Props {
     children: any

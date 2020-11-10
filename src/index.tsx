@@ -4,12 +4,17 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ApolloProvider } from '@apollo/client';
-import { getApolloClient } from './utils/apollo-client';
+import { getApolloClient } from './common/apollo-client';
+import { ThemeProvider } from 'react-jss';
+import { customTheme } from './common/custom-theme';
+import 'antd/dist/antd.css';
 
 ReactDOM.render(
   <React.StrictMode>
       <ApolloProvider client={getApolloClient('github')}>
+        <ThemeProvider theme={customTheme}>
           <App />
+        </ThemeProvider>
       </ApolloProvider>
   </React.StrictMode>,
   document.getElementById('root')
