@@ -18838,7 +18838,7 @@ export const MyRepositoryFragmentDoc = gql`
 export const SearchReactReposDocument = gql`
     query SearchReactRepos($first: Int, $last: Int, $after: String, $before: String) {
   search(
-    query: "framework:react sort:stars-desc"
+    query: "react sort:stars-desc"
     type: REPOSITORY
     first: $first
     last: $last

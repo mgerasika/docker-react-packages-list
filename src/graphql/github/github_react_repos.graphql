@@ -4,7 +4,7 @@
 
 # We'll get you started with a simple query showing your username!
 query SearchReactRepos($first: Int,$last: Int, $after: String, $before: String ) {
-    search(query: "framework:react sort:stars-desc", type: REPOSITORY, first:$first, last: $last, after: $after, before: $before) {
+    search(query: "react sort:stars-desc", type: REPOSITORY, first:$first, last: $last, after: $after, before: $before) {
         repositoryCount
         pageInfo {
             hasNextPage,
